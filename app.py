@@ -11,7 +11,14 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 app = Flask(__name__)
 @app.route('/',methods=['GET'])
 def index():
-   return message
+    list_string=message.split(",")
+    symbol = list_string[0].split(":")
+    side = list_string[1].split(":")
+    positionSide = list_string[2].split(":")
+    type = list_string[3].split(":")
+    quantity = list_string[4].split(":")
+
+    return symbol
 @app.route("/line", methods=['POST'])
 def linebot():
     global message
