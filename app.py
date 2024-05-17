@@ -34,7 +34,7 @@ def linebot():
         else:
             reply = '你傳的不是文字呦～'
         print(reply)
-        line_bot_api.reply_message(tk,TextSendMessage(reply+str(type(reply))))# 回傳訊息
+        line_bot_api.reply_message(tk,TextSendMessage(reply))# 回傳訊息
     except:
         print(body)                                          # 如果發生錯誤，印出收到的內容
     return 'OK'                                              # 驗證 Webhook 使用，不能省略
