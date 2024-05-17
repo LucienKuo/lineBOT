@@ -37,5 +37,3 @@ def linebot():
     except:
         print(body)                                          # 如果發生錯誤，印出收到的內容
     return 'OK'                                              # 驗證 Webhook 使用，不能省略
-
-def bingxDemo(postion):
