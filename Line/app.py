@@ -9,7 +9,9 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 app = Flask(__name__)
-
+@app.route('/hello',methods=['GET'])
+def index():
+   return 'Hello , This a Restful Api Server by Flask...!'
 @app.route("/", methods=['POST'])
 def linebot():
     body = request.get_data(as_text=True)                    # 取得收到的訊息內容
