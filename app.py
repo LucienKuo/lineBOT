@@ -11,9 +11,10 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 app = Flask(__name__)
 @app.route('/',methods=['GET'])
 def index():
-   return 'Hello , This a Restful Api Server by Flask...!'
+   return message
 @app.route("/line", methods=['POST'])
 def linebot():
+    global message
     body = request.get_data(as_text=True)                    # 取得收到的訊息內容
     try:
         json_data = json.loads(body)                         # json 格式化訊息內容
@@ -27,7 +28,8 @@ def linebot():
         type = json_data['events'][0]['message']['type']     # 取得 LINe 收到的訊息類型
         if type=='text':
             msg = json_data['events'][0]['message']['text']  # 取得 LINE 收到的文字訊息
-            print(msg)                                       # 印出內容
+            print(msg)
+            message = msg# 印出內容
             reply = msg
         else:
             reply = '你傳的不是文字呦～'
@@ -36,3 +38,7 @@ def linebot():
     except:
         print(body)                                          # 如果發生錯誤，印出收到的內容
     return 'OK'                                              # 驗證 Webhook 使用，不能省略
+
+if __name__ == "__main__":
+    message=""
+    app.run()
